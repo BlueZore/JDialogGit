@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />  
+<title>jquery层拖拽效果-k686绿色软件 http://www.k686.com</title>  
+<script type="text/javascript" src="http://www.9qc.com/Public/js/jquery132.js"></script>  
+</head>  
+<body>  
+<h1><a href="http://www.k686.com/" title="k686绿色软件">k686绿色软件</a></h1>  
+  
+<style type="text/css">  
+.drag{position:absolute;width:100px;height:100px;border:1px solid #ddd;background:#FBF2BD;text-align:center;padding:5px;top:100px;left:20px;cursor:move;}  
+</style>  
+  
+<!--模块拖拽-->  
+<div class="drag">这个层是可以拖动滴 ^_^ <br />  
+<a href="http://www.k686.com/" title="k686绿色软件">k686绿色软件</a></div>  
+  
+<script type="text/javascript">  
+// 层拖拽  
+$(function(){  
+    var _move=false;//移动标记  
+    var _x,_y;//鼠标离控件左上角的相对位置  
+    $(".drag").click(function(){  
+        //alert("click");//点击（松开后触发）  
+        }).mousedown(function(e){  
+        _move=true;  
+        _x=e.pageX-parseInt($(".drag").css("left"));  
+        _y=e.pageY-parseInt($(".drag").css("top"));  
+        $(".drag").fadeTo(20, 0.5);//点击后开始拖动并透明显示  
+    });  
+    $(document).mousemove(function(e){  
+        if(_move){  
+            var x=e.pageX-_x;//移动时根据鼠标位置计算控件左上角的绝对位置  
+            var y=e.pageY-_y;  
+            $(".drag").css({top:y,left:x});//控件新位置  
+        }  
+    }).mouseup(function(){  
+    _move=false;  
+    $(".drag").fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明  
+  });  
+});  
+</script>  
+  
+</body>  
+</html> 
